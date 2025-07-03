@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        *, * ::before, ::after
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html
+        {
+            width: 100vw;
+            height: 100vh;
+    
+        }
+        body
+        {
+            background-image: linear-gradient( to top, #1d2370, #646e78 );
+            background-attachment: fixed;
+            background-size: contain;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            
+
+   
+        }
+        main
+        {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(219, 214, 214, 0.377);
+            width: 100%;
+            height: auto;
+            min-height: clamp(300px, 50vw, 400px);
+            max-width: clamp(200px, 50vw, 400px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.027);
+        }
+        .labels
+        {
+            color:#1d226b81;
+            font-weight: bold;
+        }
+        .cax2
+        {
+            background: transparent;
+            padding: 7px 3px;
+            border: none;
+            border-bottom: 1.8px solid #f8f8f8;
+            outline: none;
+            color: #fffefea1;
+
+        }
+        .cax2::placeholder
+        {
+            color: #fffafaa8;
+            font-size: 1.2em;
+        }
+        #cadastro
+        {
+            display: flex;
+            flex-wrap: wrap;
+            overflow-wrap: break-word;
+            flex-direction: column;
+            gap: 20px;
+
+        }
+        h1
+        {
+            
+
+            text-align: center;
+            color: #f8f8f8b2;
+            font-size: clamp(1.8em, 3vw, 2.5em);
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            top: 0;
+            left: 0;
+            
+        }
+        #cadastrar 
+        {
+            text-align: center;
+            color: aliceblue;
+            text-transform: uppercase;
+            background-color: #282d74b6;
+            width: 100%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-size: clamp(1rem, 2vw, 1rem);
+            border: transparent;
+            border-radius: 15px;
+            box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.055);
+
+        }
+
+        #cadastrar:hover
+        {
+            cursor: pointer;
+
+        }
+        .erro
+        {
+            background-color: #fdecea;
+            color: #c62828 ;
+            border-left: 5px solid #e57373;
+
+        }
+        .sucesso
+        {
+            background-color: #e6f4ea;
+            color: #1b5e20;
+            border-left: 5px solid #66bb6a;
+
+        }
+        .msg2
+        {
+            display: grid;
+            gap: 10px; 
+            align-items: center;
+            justify-content: left;
+            padding: 15px 20px;   
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.123);
+            transition: opacity 0.3 ease;
+            text-align: center;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Dados Pessoais</h1>
+    </header>
+    <main>
+        
+        <section>
+            
+            
+            <form id="cadastro" autocomplete="">
+        
+                    <label class="labels" for="">Nome:</label>
+                    <input type="text" name="nomusua" id="name" class="cax2" placeholder="Digite Seu nome" required>
+        
+        
+                    <label class="labels" for="">Data de Nascimento:</label>
+                    <input type="date" name="data" id="data" class="cax2" placeholder="Data de nascimento" required>
+        
+        
+                    <label class="labels" for="">CPF:</label>
+                    <input type="text" name="cpf" id="cpf" class="cax2" placeholder="Digite Seu CPF" required>
+        
+        
+                    <label class="labels" for="">Email:</label>
+                    <input type="email" name="email" id="email" class="cax2" placeholder="Digite Seu Email" required>
+                    <button type="submit" id="cadastrar">Cadastrar</button>
+            </form>
+            <div id="msg2" class="msg oculto"></div>
+        </section>
+    </main>
+    
+
+
+    <script>
+        function validarCPF(cpf)
+        {
+            cpf = cpf.replace(/[^\d]+/g, ''); // remove tudo que nao é numero
+
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false; // Verifica se tem 11 dígitos ou se todos os dígitos são iguais
+
+            //Validação do primeiro dígito verificador
+            let soma = 0; 
+
+            // Multiplica os 9 primeiros dígitos por pesos decrescentes (10 a 2)
+            for(let i = 0; i<9; i++) 
+            {
+                soma+= parseInt(cpf.charAt(i))* (10 - i);
+            }
+
+
+            //Calcula o primeiro dígito verificador
+            let dig1 = 11 - (soma % 11);
+            if(dig1 >= 10) dig1 = 0;
+
+            // Verifica se o primeiro dígito calculado bate com o 10º dígito do CPF
+            if(dig1 != parseInt(cpf.charAt(9))) return false;
+
+            //Validação do segundo dígito verificador
+            soma = 0; //// zera a soma
+
+            //// Multiplica os 10 primeiros dígitos (já incluindo o 1º dígito verificador) por pesos decrescentes (11 a 2)
+            for (let i = 0; i < 10; i++)
+            {
+                soma += parseInt(cpf.charAt(i)) * (11 - i);
+            }
+
+            // Calcula o segundo dígito verificador
+            let dig2 = 11 - (soma % 11);
+            if (dig2 >= 10) dig2 = 0;
+
+            // Verifica se o segundo dígito calculado bate com o 11º dígito do CPF
+            if (dig2 !== parseInt(cpf.charAt(10))) return false; 
+            return true; 
+        }
+        function validarNome(name)
+        {
+            return /^[A-Za-zÀ-ÿ\s]{3,}$/.test(name.trim());
+        }
+        function validardatadenascimento(data)
+        {
+            let nasc = new Date(data);
+            let hoje = new Date();
+            let idade = hoje.getFullYear() - nasc.getFullYear();
+            let mes = hoje.getMonth() - nasc.getMonth();
+
+            if(mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate()))
+            {
+                idade--;
+            }
+            return idade >= 18;
+        }
+        function validaremail(email)
+        {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+        }
+        function cadastro(cadastro)
+        {
+            const name = document.getElementById('name').value;
+            const data = document.getElementById('data').value;
+            const cpf = document.getElementById('cpf').value;
+            const email = document.getElementById('email').value;
+            let msg = document.getElementById ('msg2');
+
+            
+
+            if(!validarNome(name))
+            {
+                msg2.textContent = 'Nome inválido. Use apenas letras e pelo menos 3 caracteres.';
+                msg2.className= 'msg2 erro';
+                return;
+
+            }
+            if(!validardatadenascimento(data))
+            {
+                msg2.textContent = 'Você precisa ter 18 anos ou mais.';
+                msg.className= 'msg2 erro';
+                return;
+            }
+            if(!validarCPF(cpf))
+            {
+                msg2.textContent= 'CPF inválido.';
+                msg.className= 'msg erro';
+                return;
+            }
+            if(!validaremail(email))
+            {
+                msg2.textContent = 'E-mail inválido.';
+                msg.className= 'msg2 erro';
+                return;
+            }
+            
+            msg2.textContent = 'Cadastro realizado com sucesso!';
+            msg.className= 'msg2 sucesso';
+        }
+            document.getElementById('cadastro').addEventListener
+            ('submit', function(e)
+                {
+                    e.preventDefault();
+                    cadastro();
+                }
+            );
+    </script>
+</body>
+</html>

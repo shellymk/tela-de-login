@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+*, * ::before, ::after
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html
+{
+    width: 100vw;
+    height: 100vh;
+    
+}
+body
+{
+    background-image: linear-gradient( to top, #1d2370, #646e78 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow-y: hidden;
+
+   
+}
+main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(219, 214, 214, 0.295);
+    width: 100%;
+    padding: 20px;
+    min-height: clamp(85px,70vh, 420px);
+    max-width: clamp(85px, 70vw, 420px);
+    border-radius: 20px;
+}
+.cax
+{
+    background: transparent;
+    padding: 7px 3px;
+    border: none;
+    border-bottom: 1.8px solid #b4b4b4;
+    outline: none;
+    color: #000000;
+    font-weight: bold;
+
+}
+.cax::placeholder
+{
+    color: #fffafaa8;
+    font-size: 1.2em;
+
+}
+#botoes
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#formlogin
+{
+    display: grid;
+    gap: 20px;
+    padding: 15px;
+ 
+}
+
+
+.entrarlogin
+{
+    
+    color: aliceblue;
+    text-transform: uppercase;
+    background-color: #282d74b6;
+    width: 100%;
+    padding: 6px;
+    font-size: clamp(0.5rem, 1.5vw, 0.8rem);
+    border: transparent;
+    border-radius: 8px;
+    box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.055);
+
+}
+.entrarlogin:hover
+{
+    cursor: pointer;
+}
+
+/* ESTILIZAÇAO DAS MENSAGENS DE ERRO E SUCESSO */
+.msg 
+{
+    display: grid;
+    gap: 10px; 
+    align-items: center;
+    justify-content: left;
+    padding: 15px 20px;   
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.123);
+    transition: opacity 0.3 ease;
+    text-align: center;
+}
+
+.oculto
+{
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    padding: 0;
+    margin: 0 auto;
+    transition: all 0.3 ease;
+    overflow: hidden;
+    
+    
+
+}
+.erro
+{
+    background-color: #fdecea;
+    color: #c62828 ;
+    border-left: 5px solid #e57373;
+
+}
+.sucesso
+{
+    background-color: #e6f4ea;
+    color: #1b5e20;
+    border-left: 5px solid #66bb6a;
+
+}
+.msg2
+{
+    display: grid;
+    gap: 10px; 
+    align-items: center;
+    justify-content: left;
+    padding: 15px 20px;   
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.123);
+    transition: opacity 0.3 ease;
+    text-align: center;
+
+}

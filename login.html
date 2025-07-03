@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <main>
+        
+        <section id="login">
+            <form id="formlogin" autocomplete="off">
+        
+                    <label for="usuario"></label>
+                    <input type="text" name="usuario" id="usuario" class ="cax" placeholder="User" required>
+        
+        
+                    <label for="senha"></label>
+                    <input type="password" name="senha" id="senha" class ="cax" placeholder="Password" required>
+                    <p>
+                        <a href="#">Esqueceu a senha?</a>
+                    </p>
+
+                    <div id="botoes">
+                        <button type="submit" class="entrarlogin" id="bt1" >Login </button>
+                        <button type="submit" class="entrarlogin" id="bt2">Criar Conta</button>
+                    </div>
+
+        
+            </form>
+        <div id="msg" class="msg oculto"> </div>    
+        </section>
+        
+    </main>
+    
+   <script src="script.js"></script> 
+</body>
+</html>
