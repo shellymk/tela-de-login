@@ -1,149 +1,208 @@
-@charset "UTF-8";
+:root {
+  --bg-1: #0b0f1e; /* azul quase preto */
+  --bg-2: #141b3a; /* azul mais quente */
+  --accent: #d4af37; /* dourado elegante */
+  --muted: #b8bccd;
+  --card: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.06);
+  --focus: rgba(212,175,55,0.2);
+  --success: #1b5e20;
+  --error: #c62828;
 
-*, * ::before, ::after
-{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-html
-{
-    width: 100vw;
-    height: 100vh;
-    
-}
-body
-{
-    background-image: linear-gradient( to top, #1d2370, #646e78 );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    overflow-y: hidden;
-
-   
-}
-main
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(219, 214, 214, 0.295);
-    width: 100%;
-    padding: 20px;
-    min-height: clamp(85px,70vh, 420px);
-    max-width: clamp(85px, 70vw, 420px);
-    border-radius: 20px;
-}
-.cax
-{
-    background: transparent;
-    padding: 7px 3px;
-    border: none;
-    border-bottom: 1.8px solid #b4b4b4;
-    outline: none;
-    color: #000000;
-    font-weight: bold;
-
-}
-.cax::placeholder
-{
-    color: #fffafaa8;
-    font-size: 1.2em;
-
-}
-#botoes
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
-#formlogin
-{
-    display: grid;
-    gap: 20px;
-    padding: 15px;
- 
+  --pad: 20px;
+  --transition: 180ms ease;
+  --shadow: 0 10px 30px rgba(3,10,30,0.45);
+  font-size: 16px;
 }
 
-
-.entrarlogin
-{
-    
-    color: aliceblue;
-    text-transform: uppercase;
-    background-color: #282d74b6;
-    width: 100%;
-    padding: 6px;
-    font-size: clamp(0.5rem, 1.5vw, 0.8rem);
-    border: transparent;
-    border-radius: 8px;
-    box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.055);
-
-}
-.entrarlogin:hover
-{
-    cursor: pointer;
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #eaf0ff;
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ESTILIZAÇAO DAS MENSAGENS DE ERRO E SUCESSO */
-.msg 
-{
-    display: grid;
-    gap: 10px; 
-    align-items: center;
-    justify-content: left;
-    padding: 15px 20px;   
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.123);
-    transition: opacity 0.3 ease;
-    text-align: center;
+/* --- Layout principal --- */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.oculto
-{
-    opacity: 0;
-    pointer-events: none;
-    height: 0;
-    padding: 0;
-    margin: 0 auto;
-    transition: all 0.3 ease;
-    overflow: hidden;
-    
-    
-
+/* --- Lado esquerdo: login --- */
+#login {
+  flex: 0.45;
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  padding: 70px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
+  position: relative;
+  z-index: 2;
 }
-.erro
-{
-    background-color: #fdecea;
-    color: #c62828 ;
-    border-left: 5px solid #e57373;
 
+/* --- Logo unificada (para login e banner) --- */
+.logo-container {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 20;
 }
-.sucesso
-{
-    background-color: #e6f4ea;
-    color: #1b5e20;
-    border-left: 5px solid #66bb6a;
 
+.logo {
+  width: 110px;
+  height: auto;
+  border-radius: 10px;
+  opacity: 0.92;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.msg2
-{
-    display: grid;
-    gap: 10px; 
-    align-items: center;
-    justify-content: left;
-    padding: 15px 20px;   
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.123);
-    transition: opacity 0.3 ease;
-    text-align: center;
 
+.logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
 }
+
+/* --- Formulário --- */
+#formlogin {
+  display: grid;
+  gap: 16px;
+  max-width: 380px;
+}
+
+#formlogin h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cax {
+  background: transparent;
+  padding: 12px 14px;
+  border-radius: 6px;
+  color: #eaf0ff;
+  border: 1px solid rgba(255,255,255,0.12);
+  outline: none;
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.cax::placeholder { color: rgba(234,240,255,0.55); }
+.cax:focus {
+  box-shadow: 0 0 8px var(--focus);
+  border-color: var(--accent);
+}
+
+/* --- Botões --- */
+#botoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+#bt1, #bt2 {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+
+/* Botão Login */
+#bt1 {
+  background: linear-gradient(90deg, #2a3573, #3c4dab);
+  color: #fff;
+}
+#bt1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(60,77,171,0.4);
+}
+
+/* Botão Criar conta */
+#bt2 {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+#bt2:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Banner lateral --- */
+#banner {
+  flex: 0.55;
+  background: url("imagens/CRIPTO.jpg") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 40px;
+  overflow: hidden;
+}
+
+#banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(11,15,30,0.6), rgba(11,15,30,0.2));
+  z-index: 1;
+}
+
+/* --- Logo no banner --- */
+#banner .logo-container {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 2;
+}
+
+/* --- Link "esqueceu a senha" --- */
+#recuperar-senha {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+#recuperar-senha:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* --- Mensagens --- */
+.msg {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.msg:not(.oculto) {
+  opacity: 1;
+  transform: translateY(0);
+}
+.msg.sucesso {
+  background: rgba(102,187,106,0.1);
+  color: #b4ffb4;
+  border-left: 4px solid #66bb6a;
+}
+.msg.erro {
+  background: rgba(255,205,205,0.1);
+  color: #ffbaba;
+  border-left: 4px solid #e57373;
+}
+
+
+
