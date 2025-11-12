@@ -47,7 +47,7 @@ html, body {
   z-index: 2;
 }
 
-/* --- Logo unificada (para login e banner) --- */
+/* --- Logo --- */
 .logo-container {
   position: absolute;
   top: 30px;
@@ -94,10 +94,20 @@ html, body {
   font-weight: 500;
   font-size: 0.98rem;
 }
-.cax::placeholder { color: rgba(234,240,255,0.55); }
+.cax::placeholder {
+  color: rgba(234,240,255,0.55);
+}
 .cax:focus {
   box-shadow: 0 0 8px var(--focus);
   border-color: var(--accent);
+}
+
+/* --- Google reCAPTCHA --- */
+.g-recaptcha {
+  margin-top: 10px;
+  transform: scale(0.93);
+  transform-origin: left;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 /* --- Botões --- */
@@ -159,14 +169,6 @@ html, body {
   z-index: 1;
 }
 
-/* --- Logo no banner --- */
-#banner .logo-container {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  z-index: 2;
-}
-
 /* --- Link "esqueceu a senha" --- */
 #recuperar-senha {
   color: var(--muted);
@@ -204,5 +206,15 @@ html, body {
   border-left: 4px solid #e57373;
 }
 
+/* --- Indicador de força da senha --- */
+#formlogin div[style*="height: 6px"] {
+  width: 0;
+  background: transparent;
+  transition: width 0.3s ease, background 0.3s ease;
+}
 
-
+/* --- Bloqueio temporário visual (para UX) --- */
+#bt1:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

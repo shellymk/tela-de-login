@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 🔒 Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
-    <main class="container">
-        <!-- Lado esquerdo: Login -->
-        <section id="login">
 
-            <form id="formlogin" autocomplete="off">
-                <h2>Bem-vindo de volta</h2>
+  <main class="container">
+    <!-- Lado esquerdo: Login -->
+    <section id="login">
+      <form id="formlogin" autocomplete="off" method="post">
+        <h2>Bem-vindo de volta</h2>
 
-                <label for="usuario"></label>
-                <input type="text" name="usuario" id="usuario" class="cax" placeholder="Email" required>
+        <input type="email" name="usuario" id="usuario" class="cax" placeholder="Email" required>
+        <input type="password" name="senha" id="senha" class="cax" placeholder="Senha" required>
 
-                <label for="senha"></label>
-                <input type="password" name="senha" id="senha" class="cax" placeholder="Password" required>
+        <p><a href="#" id="recuperar-senha">Esqueceu a senha?</a></p>
 
-                <p>
-                    <a href="#" id="recuperar-senha">Esqueceu a senha?</a>
-                </p>
+        <!-- ✅ reCAPTCHA Google -->
+        
+        <div class="captcha-container">
+            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI">  
+            </div>
+        </div>
 
-                <div id="botoes">
-                    <button type="submit" id="bt1">Login</button>
-                    <button type="button" id="bt2">Criar Conta</button>
-                </div>
-            </form>
+        
+        <div id="botoes">
+            <button type="submit" id="bt1">Login</button>
+            <button type="button" id="bt2">Criar Conta</button>
+        </div>
 
-            <div id="msg" class="msg oculto"></div>
-        </section>
+      </form>
 
-        <!-- Lado direito: Imagem/banner -->
-        <section id="banner">
+      <div id="msg" class="msg oculto"></div>
+    </section>
 
-            
-        </section>
-    </main>
+    <!-- Lado direito: Imagem/banner -->
+    <section id="banner"></section>
+  </main>
 
-    <script src="JS/script.js"></script>
+  <script src="JS/script.js"></script>
 
-    <script>
-        // 👉 Redirecionar para a página de cadastro
-        document.getElementById("bt2").addEventListener("click", function () {
-            window.location.href = "cadastro.html";
-        });
-    </script>
+  <script>
+    // 👉 Redirecionar para a página de cadastro
+    document.getElementById("bt2").addEventListener("click", function () {
+      window.location.href = "cadastro.html";
+    });
+  </script>
 </body>
-
 </html>
