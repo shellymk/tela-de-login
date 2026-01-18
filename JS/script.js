@@ -20,6 +20,7 @@
   let tentativas = parseInt(localStorage.getItem('tentativasLogin')) || 0;
   let bloqueadoAte = parseInt(localStorage.getItem('bloqueadoAte')) || 0;
 
+
   // ----- Token helpers -----
   function saveToken(token, expiresAtMs = null) {
     sessionStorage.setItem('accessToken', token);
@@ -32,6 +33,7 @@
     sessionStorage.removeItem('accessToken_expiresAt');
     console.log('[AUTH] Token limpo.');
   }
+
   function getToken() { return sessionStorage.getItem('accessToken'); }
 
   function decodeJwtPayload(token) {
@@ -43,6 +45,7 @@
       return JSON.parse(json);
     } catch { return null; }
   }
+  
   function isTokenValid() {
     const token = getToken(); if (!token) return false;
     const expStored = parseInt(sessionStorage.getItem('accessToken_expiresAt') || '0', 10);
@@ -97,7 +100,7 @@
     btCriar.disabled = true;
 
     try {
-      const payload = { email, password: senha };
+      const payload = { email: s, password: senha };
       console.log('[AUTH] Enviando login para API:', API_URL);
       const response = await fetch(API_URL, {
         method: 'POST',
