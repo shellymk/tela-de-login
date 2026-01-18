@@ -159,6 +159,16 @@ h1 {
   </main>
 
   <script>
+
+    /* 
+    {
+      id: "google-103947293847293847293",
+      name: "Maria Silva",
+      email: "maria@gmail.com",
+      avatar: "https://...",
+      provider: "google"
+    }
+ */
     // --- Validações originais ---
     function validarCPF(cpf) {
       cpf = cpf.replace(/[^\d]+/g, '');
@@ -189,8 +199,9 @@ h1 {
     }
 
     function validarEmail(email) {
-      return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.trim());
-    }
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
 
     // --- Envio para API com JWT ---
     document.getElementById('cadastro').addEventListener('submit', async function (e) {

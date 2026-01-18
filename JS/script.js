@@ -16,7 +16,7 @@
 
   if (!form) { console.error('[AUTH] #formlogin não encontrado.'); return; }
 
-  // ----- Attempts / Block -----
+  // ----- Tentativas / Bloqueio -----
   let tentativas = parseInt(localStorage.getItem('tentativasLogin')) || 0;
   let bloqueadoAte = parseInt(localStorage.getItem('bloqueadoAte')) || 0;
 
@@ -45,7 +45,7 @@
       return JSON.parse(json);
     } catch { return null; }
   }
-  
+
   function isTokenValid() {
     const token = getToken(); if (!token) return false;
     const expStored = parseInt(sessionStorage.getItem('accessToken_expiresAt') || '0', 10);
@@ -53,6 +53,7 @@
     if (expStored && Date.now() >= expStored) return false;
     const payload = decodeJwtPayload(token);
     if (payload && payload.exp) {
+
       const expMs = payload.exp * 1000;
       sessionStorage.setItem('accessToken_expiresAt', String(expMs));
       return Date.now() < expMs;
